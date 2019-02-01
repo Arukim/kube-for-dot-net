@@ -1,0 +1,20 @@
+# This is an entry point for clients
+# Processing is being initiated using this API methods
+version: '3.1'
+services:
+  messageBus:
+    image: "rabbitmq:3-management"
+    hostname: "rmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "RMQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+  mongo:
+    image: mongo:4.0.5
+    restart: always
+    ports: 
+      - "27017:27017"
