@@ -1,5 +1,6 @@
 ﻿using DNATrack.Common.Core;
 using DNATrack.Common.Messaging;
+using DNATrack.Persistence;
 using DNATrack.Services.Analysis.Consumers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +14,8 @@ namespace DNATrack.Services.Analysis
         {
             services
                 .AddScoped<NewTraceConsumer>()
-                .AddSingleton<Application>()
+                .AddSingleton<AnalysisService>()
+                .Configure<MongoDbConfiguration>(configuration.GetSection(Constants.ConfigSections.Mongo))
                 .Configure<RabbitMQConfiguration>(configuration.GetSection(Constants.ConfigSections.Rabbit));
         }
     }

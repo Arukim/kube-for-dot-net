@@ -49,11 +49,14 @@ namespace DNATrack.Common.Core
         private IServiceProvider BuildServices()
         {
             var serviceCollection = new ServiceCollection()
-               .AddLogging()
+               .AddLogging((logging) =>
+               {
+                   logging.AddConfiguration(configuration.GetSection("Logging"));
+                   logging.AddConsole();
+               })
                .AddOptions();
 
             BootstrapServices(serviceCollection);
-            serviceCollection.AddLogging(configure => configure.AddConsole());
 
             var services = serviceCollection.BuildServiceProvider();
 

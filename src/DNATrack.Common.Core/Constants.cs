@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DNATrack.Common.Core
+﻿namespace DNATrack.Common.Core
 {
     public static class Constants
     {
         public const string LinuxConfigPath = "/etc/config/appsettings.json";
         public static class ConfigSections
         {
-            public const string Rabbit = "rabbit";
+            public const string Rabbit = "Rabbit";
+            public const string Mongo = "Mongo";
         }
 
         public static class Queues
