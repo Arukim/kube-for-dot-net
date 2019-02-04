@@ -3,7 +3,6 @@ using DNATrack.Persistence.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
 using System.Threading.Tasks;
 
 namespace DNATrack.Jobs.Validator
@@ -20,7 +19,7 @@ namespace DNATrack.Jobs.Validator
             var database = client.GetDatabase("dnaTrack");
             var collection = database.GetCollection<Trace>("traces");
 
-            var update = Builders<Trace>.Update.Set("lastValidation", DateTime.UtcNow);
+            var update = Builders<Trace>.Update.CurrentDate("lastValidation");
             await collection.UpdateManyAsync(new BsonDocument(), update);
         }
     }
