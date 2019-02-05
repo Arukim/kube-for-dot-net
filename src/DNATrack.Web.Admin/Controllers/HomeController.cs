@@ -4,6 +4,7 @@ using DNATrack.Common.Messaging.Commands;
 using DNATrack.Web.Admin.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Diagnostics;
@@ -15,10 +16,12 @@ namespace DNATrack.Web.Admin.Controllers
     {
         private readonly IBusControl busControl;
         private readonly RabbitMQConfiguration rmqConfig;
+        private readonly ILogger logger;
 
-        public HomeController(IBusControl busControl,
+        public HomeController(ILogger<HomeController> logger, IBusControl busControl,
             IOptions<RabbitMQConfiguration> rmqOptions)
         {
+            this.logger = logger;
             this.busControl = busControl;
             rmqConfig = rmqOptions.Value;
         }
@@ -32,10 +35,14 @@ namespace DNATrack.Web.Admin.Controllers
         public async Task<IActionResult> Create([Bind("Count")]BatchViewModel batch)
         {
             var batchId = Guid.NewGuid();
-            var ep = await busControl.GetSendEndpoint(ConfigurationBuilder.GetEndpoint(rmqConfig, Constants.Queues.NewTrace));
-            for (int i = 0; i < batch.Count; i++)
+            using (var _ = logger.BeginScope($"Sending batch {batchId}"))
             {
-                await ep.Send(new NewTrace { BatchId = batchId, TraceNumber = i });
+                var ep = await busControl.GetSendEndpoint(ConfigurationBuilder.GetEndpoint(rmqConfig, Constants.Queues.NewTrace));
+                for (int i = 0; i < batch.Count; i++)
+                {
+                    await ep.Send(new NewTrace { BatchId = batchId, TraceNumber = i });
+                    logger.LogInformation($"Trace #{i} sent");
+                }
             }
             return RedirectToAction(nameof(Index));
         }

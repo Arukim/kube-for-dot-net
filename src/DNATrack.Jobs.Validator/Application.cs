@@ -1,11 +1,13 @@
 ﻿using DNATrack.Common.Core;
 using DNATrack.Persistence;
 using DNATrack.Persistence.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Configuration;
 using System.Threading.Tasks;
 
 namespace DNATrack.Jobs.Validator
@@ -14,9 +16,15 @@ namespace DNATrack.Jobs.Validator
     {
         protected override string Name => "Validator Job";
 
-        protected override void BootstrapServices(IServiceCollection services) {
+        protected override void BootstrapServices(IServiceCollection services)
+        {
+
+            var mongoSection = configuration.GetSection(Constants.ConfigSections.Mongo);
+            if (!mongoSection.Exists())
+                throw new ConfigurationErrorsException($"Required section '{mongoSection.Path}' not found in configuration");
+
             services
-                .Configure<MongoDbConfiguration>(configuration.GetSection(Constants.ConfigSections.Mongo));
+                .Configure<MongoDbConfiguration>(mongoSection);
         }
 
         protected override async Task DoWorkload()

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace DNATrack.Web.Client
 {
@@ -29,9 +30,13 @@ namespace DNATrack.Web.Client
             });
 
 
+            var mongoSection = Configuration.GetSection(Constants.ConfigSections.Mongo);
+            if (!mongoSection.Exists())
+                throw new ConfigurationErrorsException($"Required section '{mongoSection.Path}' not found in configuration");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.Configure<MongoDbConfiguration>(Configuration.GetSection(Constants.ConfigSections.Mongo));
+            services.Configure<MongoDbConfiguration>(mongoSection);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

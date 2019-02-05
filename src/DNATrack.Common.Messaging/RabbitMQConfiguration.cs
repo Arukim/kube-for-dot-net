@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DNATrack.Common.Messaging
+﻿namespace DNATrack.Common.Messaging
 {
     public class RabbitMQConfiguration
     {

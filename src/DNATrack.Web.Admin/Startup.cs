@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Configuration;
 
 namespace DNATrack.Web.Admin
 {
@@ -30,10 +32,19 @@ namespace DNATrack.Web.Admin
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var rmqConfig = Configuration.GetSection("rabbit").Get<RabbitMQConfiguration>();
+            var rmqSection = Configuration.GetSection(Constants.ConfigSections.Rabbit);
+            if (!rmqSection.Exists())
+                throw new ConfigurationErrorsException($"Required section '{rmqSection.Path}' not found in configuration");
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var rmqConfig = rmqSection.Get<RabbitMQConfiguration>();
 
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddRazorPagesOptions(o =>
+                {
+                    o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+                });
+            
             services
                 .Configure<RabbitMQConfiguration>(Configuration.GetSection(Constants.ConfigSections.Rabbit))
                 .AddSingleton(Bus.Factory.CreateUsingRabbitMq(cfg =>
@@ -59,7 +70,6 @@ namespace DNATrack.Web.Admin
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

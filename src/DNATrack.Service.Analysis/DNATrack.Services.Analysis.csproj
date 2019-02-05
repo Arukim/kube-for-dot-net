@@ -12,6 +12,7 @@
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="5.2.3" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="5.2.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
