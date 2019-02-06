@@ -5,8 +5,8 @@
         public const string LinuxConfigPath = "/etc/config/appsettings.json";
         public static class ConfigSections
         {
-            public const string Rabbit = "Rabbit";
-            public const string Mongo = "Mongo";
+            public const string Rabbit = "rabbit";
+            public const string Mongo = "mongo";
         }
 
         public static class Queues

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATrack.Web.Admin", "DNATr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATrack.Common.Messaging", "DNATrack.Common.Messaging\DNATrack.Common.Messaging.csproj", "{55F5F1D4-74A4-4069-9411-26E0FE610AA9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATrack.Services.Analysis", "DNATrack.Service.Analysis\DNATrack.Services.Analysis.csproj", "{105EB1B2-EC89-4025-A93D-33333C286764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATrack.Services.Analysis", "DNATrack.Services.Analysis\DNATrack.Services.Analysis.csproj", "{105EB1B2-EC89-4025-A93D-33333C286764}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6EFF9C0E-5CB3-4AB4-9860-41AB09C65DD3}"
 EndProject
@@ -20,6 +20,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNATrack.Jobs.Validator", "DNATrack.Jobs.Validator\DNATrack.Jobs.Validator.csproj", "{8FA6559B-22D8-422A-804C-E42259FA663D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNATrack.Web.Client", "DNATrack.Web.Client\DNATrack.Web.Client.csproj", "{A5B44195-DBDF-4242-B164-08CEE0A7AF23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66B1B009-9B25-4EAB-A708-435C63E4AB6B}"
+	ProjectSection(SolutionItems) = preProject
+		sampleSettings.json = sampleSettings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
