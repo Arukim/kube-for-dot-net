@@ -21,7 +21,7 @@ Play with docker and linux shell
 - Check containers (including closed)
   - $docker ps -a 
 - Enter docker in interactive mode
-  - $docker run -it busybox sh
+  - $docker run -i busybox sh
     - $ls
     - $top
     - press q to exit
@@ -29,6 +29,6 @@ Play with docker and linux shell
     - $rm -rf bin
     - $ls bin
     - $exit
-- $docker run -it busybox sh
+- $docker run -i busybox sh
   -  $ls bin
   -  exit  
