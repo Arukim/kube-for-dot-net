@@ -57,7 +57,7 @@ Build and run your own container, yo ho ho.
 - run again application
 - host.docker.internal
 - Rabbit:Password="rabbitmq"
-- Rabbit:Password="rabbitmq"
+- Rabbit:Username="rabbitmq"
 
 
 ### Finally, all together
