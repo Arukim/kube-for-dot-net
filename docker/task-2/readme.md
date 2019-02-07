@@ -19,6 +19,13 @@ Build and run your own container, yo ho ho.
   - $docker images
   - run build again
 
+
+### Inspect the image
+
+- You can view extended image info using
+  - $docker inspect dnatrack/web/admin
+  - $docker history dnatrack/web/admin
+
 ### Running .NET Core App
 
 - Try to run app
@@ -26,8 +33,8 @@ Build and run your own container, yo ho ho.
 - Any ideas how to pass missing params?
 - Passing Environment variables using -e 
   -  Rabbit:Endpoint="rabbitmq://localhost:5672"
-- Run two times
-  - $docker ps
+- Create two containers
+- run $docker ps
 - Remove old
   - $docker stop
   - $docker ps -a
@@ -36,12 +43,14 @@ Build and run your own container, yo ho ho.
 - We also need a port
   - -p 8000:80
   - browse
-  - run twice
+  - Create twice
   - delete old
+- Inspect image
+  - $docker exec -it {containerId} /bin/bash
 
 ### We need a RabbitMQ
 - https://www.rabbitmq.com/download.html
-- docker run -p "5672:5672" -e RABBITMQ_DEFAULT_USER="rabbitmq" -e RABBITMQ_DEFAULT_PASS="rabbitmq" rabbitmq:3-management
+- $docker run -p "5672:5672" -e RABBITMQ_DEFAULT_USER="rabbitmq" -e RABBITMQ_DEFAULT_PASS="rabbitmq" rabbitmq:3-management
 
 
 ### Connectivity
@@ -51,12 +60,7 @@ Build and run your own container, yo ho ho.
 - Rabbit:Password="rabbitmq"
 
 
-### Finally, anyone?
-
-
-
-
-
+### Finally, all together
 
 
 ### Some magic
