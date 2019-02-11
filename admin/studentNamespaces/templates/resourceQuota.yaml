@@ -1,0 +1,14 @@
+{{- range .Values.names}}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  namespace: {{ . }}
+  name: cpu-mem-quota
+spec:
+  hard:
+    requests.cpu: "500m"
+    requests.memory: 1Gi
+    limits.cpu: "1"
+    limits.memory: 1.5Gi
+---
+{{- end}}
