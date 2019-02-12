@@ -15,5 +15,17 @@ services:
     restart: always
     ports: 
       - "27017:27017"
+  web-client:
+    image: dnatrack/web/client
+    ports:
+      - "8001:80"
+    volumes:
+      - /C/github/kube-for-dot-net/docker/task-3/appsettings.json:/etc/config/appsettings.json:ro
+  service-analysis:
+    image: dnatrack/service/analysis
+    restart: always
+    volumes:
+      - /C/github/kube-for-dot-net/docker/task-3/appsettings.json:/etc/config/appsettings.json:ro        
+
 #networks
 #volumes
