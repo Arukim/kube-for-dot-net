@@ -56,3 +56,7 @@ $kubectl get pods
 * View logs
 
  $kubectl logs {resource} --timestamps=true
+
+* View nodes
+
+ $Kubectl get nodes
