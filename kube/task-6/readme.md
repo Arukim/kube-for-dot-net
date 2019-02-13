@@ -2,11 +2,13 @@
 
 ## Create service and deployment
 
-* Create service and deployment
-  * NB in single file
+* View both YAML and insert correct machine names (use equal to your namespace)
+* Create service, deployment and ingress
+  * NB service and deployment in a single file
+  * NB we need an ingress
   * $kubectl apply -f ./
 * view service description
-  * $kubectl describe service dnatrack-web-admin-service
-* View page at http://overmind.westeurope.cloudapp.azure.com:80{MAC}/
+  * $kubectl describe service web-admin
+* View page at http://overmind.westeurope.cloudapp.azure.com/{MAC}/admin
 * delete deployment and service
   * $kubectl delete -f ./
