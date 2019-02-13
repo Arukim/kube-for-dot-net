@@ -7,6 +7,8 @@
     * kubectl create configmap app --from-file=configMaps/ -o yaml --dry-run | kubectl replace -f -
 * View config 
   * $kubectl get configmap app -o yaml
+* Delete a config map
+  * $kubectl delete configmap app -o yaml
 * Create a secret
   * $kubectl apply -f .\secret.yaml
 * View a secret
