@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Configuration;
 
 namespace DNATrack.Web.Client
@@ -50,6 +51,10 @@ namespace DNATrack.Web.Client
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            var basePath = Configuration.GetValue<string>("BasePath");
+            Console.WriteLine($"using basePath {basePath}");
+            app.UsePathBase(basePath);
 
             app.UseStaticFiles();
             app.UseCookiePolicy();

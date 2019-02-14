@@ -70,6 +70,10 @@ namespace DNATrack.Web.Admin
                 app.UseHsts();
             }
 
+            var basePath = Configuration.GetValue<string>("BasePath");
+            Console.WriteLine($"using basePath {basePath}");
+            app.UsePathBase(basePath);
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
