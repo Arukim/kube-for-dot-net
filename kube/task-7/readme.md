@@ -32,6 +32,6 @@
     * arukim/dnatrack-service-analysis:v1
   * Replica Count: 2 
 * Run all and check application at http://overmind.westeurope.cloudapp.azure.com/{MAC}
-   [BONUS]Create Cron Job for Validator
+* [BONUS]Create Cron Job for Validator
   * arukim/dnatrack-job-validator:v1
 
